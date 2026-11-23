@@ -1,3 +1,55 @@
+/* Base styles the pages were designed against. rsuite 4 applied these globally;
+   rsuite 6 no longer does, so they live here now. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+body {
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #575757;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: bolder;
+  margin: 0;
+}
+h1 {
+  font-size: 46px;
+  line-height: 62px;
+}
+h2 {
+  font-size: 36px;
+  line-height: 50px;
+}
+p {
+  margin: 0;
+}
+p + p {
+  margin-top: 8px;
+}
+hr {
+  margin: 20px 0;
+  border: 0;
+  border-top: 1px solid #e5e5ea;
+}
+img {
+  vertical-align: middle;
+}
+input,
+button,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+  margin: 0;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-import { ReactComponent as FrontPageImage } from "./images/frontpage.svg";
+import FrontPageImage from "./images/frontpage.svg?react";
 import { Navbar } from "./Navbar";
 
 export const MainPage: React.FC = () => {

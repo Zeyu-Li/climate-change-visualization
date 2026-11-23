@@ -26,9 +26,9 @@ A React app that allows you to explore climate change around Canada in 3D! Users
 
 ### Dependencies
 
-* create-react-app
+* Vite
 * rsuite
-* react-router-dom
+* react-router
 * react-map-gl
 * deck.gl
 

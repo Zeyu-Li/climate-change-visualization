@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch, BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Route, Routes as Switch } from "react-router";
 
 import { MainPage } from "./MainPage";
 import { PageNotFound } from "./PageNotFound";
@@ -10,10 +10,10 @@ export const Routes: React.FC = () => {
     <>
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" component={MainPage} />
-          <Route path="/report" component={Report} />
-          <Route path="/404" component={PageNotFound} />
-          <Route component={PageNotFound} />
+          <Route path="/" element={<MainPage />} />
+          <Route path="/report/*" element={<Report />} />
+          <Route path="/404" element={<PageNotFound />} />
+          <Route path="*" element={<PageNotFound />} />
         </Switch>
       </BrowserRouter>
     </>
