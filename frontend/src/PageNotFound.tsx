@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Navbar } from "./Navbar";
-import { ReactComponent as GraphicNotFound } from "./images/notFound.svg";
+import GraphicNotFound from "./images/notFound.svg?react";
 
 export const PageNotFound: React.FC = () => {
   useEffect(() => {

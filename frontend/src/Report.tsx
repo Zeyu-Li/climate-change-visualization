@@ -1,24 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { Slider } from "rsuite";
-import "rsuite/dist/styles/rsuite-default.css";
+import "rsuite/dist/rsuite-no-reset.min.css";
 
-import { ReactComponent as TriangleOpen } from "./images/triangleOpen.svg";
-import { ReactComponent as TriangleClose } from "./images/triangleClose.svg";
+import TriangleOpen from "./images/triangleOpen.svg?react";
+import TriangleClose from "./images/triangleClose.svg?react";
 import { Navbar } from "./Navbar";
 
-import { geoToH3 } from "h3-js";
-//@ts-ignore
-import ReactMapGL from "react-map-gl";
+import { latLngToCell } from "h3-js";
+import ReactMapGL from "react-map-gl/mapbox";
+import "mapbox-gl/dist/mapbox-gl.css";
 
-//@ts-ignore
+import type { Color } from "@deck.gl/core";
 import DeckGL from "@deck.gl/react";
-//@ts-ignore
 import { H3HexagonLayer } from "@deck.gl/geo-layers";
 import tempdata from "./tempdata.json";
 
 export const Report: React.FC = () => {
-  const MAPBOX_TOKEN =
-    "pk.eyJ1IjoiYmVuYWRyaWxsIiwiYSI6ImNrc21hajlrbzFqaGoydXBjOWlyOGl5cHIifQ.sTt3_tgmpDlBUOaPW7lTqg";
+  // Public Mapbox browser token (pk.*), supplied at build time. Restrict it to your domain in the Mapbox dashboard.
+  const MAPBOX_TOKEN: string = import.meta.env.VITE_MAPBOX_TOKEN ?? "";
 
   const [showType, changeShowType] = useState("normal");
   const [toggleSidebar, toggleToggleSidebar] = useState(true);
@@ -35,7 +34,7 @@ export const Report: React.FC = () => {
     (obj: any) => obj.year === sliderValue && obj.mean_temp != null
   );
 
-  const setFillColor = (d: any) => {
+  const setFillColor = (d: any): Color => {
     if (d.mean_temp > 0) {
       return [255, (1 - d.mean_temp / 10) * 255, 0, 90];
     } else {
@@ -56,7 +55,7 @@ export const Report: React.FC = () => {
     filled: fill,
     extruded: true,
     elevationScale: 25000,
-    getHexagon: (d: any) => geoToH3(d.latitude, d.longitude, 5),
+    getHexagon: (d: any) => latLngToCell(d.latitude, d.longitude, 5),
     getFillColor: setFillColor,
     getElevation: (d: any) => d.mean_temp,
   });
@@ -270,7 +269,7 @@ export const Report: React.FC = () => {
           }}
         >
           <ReactMapGL
-            mapboxApiAccessToken={MAPBOX_TOKEN}
+            mapboxAccessToken={MAPBOX_TOKEN}
             mapStyle={"mapbox://styles/benadrill/cksmdc7bynkzp17ly78uzonu7"}
           />
         </DeckGL>
